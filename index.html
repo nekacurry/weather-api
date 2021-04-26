@@ -91,10 +91,12 @@
         const zip = zipInput.value
         const apiKey = 'ded2931ab0bcfe4f0f974e3830fccae7'
 
-        getWeather(zip, apiKey, (data) => {
-          tempEl.innerHTML = data.main.temp
-          descEl.innerHTML = data.weather[0].description
-        })
+        getWeather(zip, apiKey)
+          .then((data) => {
+            tempEl.innerHTML = data.main.temp
+            descEl.innerHTML = data.weather[0].description 
+          }).catch(err => console.log(err.message))
+
       })
 
       
