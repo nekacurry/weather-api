@@ -56,6 +56,9 @@
   </head>
   <body>
     <div class="container">
+      <h2 id="name">
+        <!-- City Name -->
+      </h2>
       <h1 id="temp">
         <!--Temp -->
       </h1>
@@ -84,6 +87,7 @@
       const descEl = document.getElementById('desc')
       const formEl = document.getElementById('form')
       const zipInput = document.getElementById('zip')
+      const nameEl = document.getElementById('name')
 
       // Define event listeners
       formEl.addEventListener('submit', (e) => {
@@ -93,8 +97,9 @@
 
         getWeather(zip, apiKey)
           .then((data) => {
-            tempEl.innerHTML = data.main.temp
-            descEl.innerHTML = data.weather[0].description 
+            tempEl.innerHTML = data.temp
+            nameEl.innerHTML = data.name
+            descEl.innerHTML = data.description 
           }).catch(err => console.log(err.message))
 
       })
