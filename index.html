@@ -121,7 +121,7 @@
             tempEl.innerHTML = data.temp
             iconEl.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.icon}@2x.png">`
             nameEl.innerHTML = data.name
-            feelsLikeEl.innerHTML = `Feels like: ${data.feels_like}`
+            feelsLikeEl.innerHTML = `<i>Feels like:</i> ${data.feels_like}`
             descEl.innerHTML = data.description 
           }).catch(err => console.log(err.message))
 
