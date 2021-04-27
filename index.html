@@ -16,8 +16,21 @@
         align-items: center;
       }
 
-      h1, p {
-        margin: 0 0 1rem 0;
+      h1, h2, p {
+        margin: 0 0 0.75rem 0;
+      }
+
+      #feels-like {
+        font-size: 0.75em;
+        font-weight: bold;
+      }
+
+      h1 {
+        background-color: rgb(199, 199, 199);
+      }
+
+      span {
+        vertical-align: middle;
       }
 
       .container {
@@ -26,6 +39,8 @@
         flex-direction: column;
         border: 1px
       }
+
+      
 
       #form {
         display: flex;
@@ -59,9 +74,13 @@
       <h2 id="name">
         <!-- City Name -->
       </h2>
-      <h1 id="temp">
-        <!--Temp -->
+      <h1>
+        <span id="icon"></span>
+        <span id="temp"></span>
       </h1>
+      <p id="feels-like">
+        <!-- Feels Like-->
+      </p>
       <p id="desc">
         <!-- description -->
       </p>
@@ -84,10 +103,12 @@
 
       // Get Element refererences
       const tempEl = document.getElementById('temp')
+      const feelsLikeEl = document.getElementById('feels-like')
       const descEl = document.getElementById('desc')
       const formEl = document.getElementById('form')
       const zipInput = document.getElementById('zip')
       const nameEl = document.getElementById('name')
+      const iconEl = document.getElementById('icon')
 
       // Define event listeners
       formEl.addEventListener('submit', (e) => {
@@ -98,7 +119,9 @@
         getWeather(zip, apiKey)
           .then((data) => {
             tempEl.innerHTML = data.temp
+            iconEl.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.icon}@2x.png">`
             nameEl.innerHTML = data.name
+            feelsLikeEl.innerHTML = `Feels like: ${data.feels_like}`
             descEl.innerHTML = data.description 
           }).catch(err => console.log(err.message))
 

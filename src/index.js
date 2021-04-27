@@ -12,6 +12,7 @@ async function getWeather(zip, apiKey, units = 'imperial') {
             name: json.name,
             temp: json.main.temp,
             feels_like: json.main.feels_like,
+            icon: json.weather[0].icon,
             temp_min: json.main.temp_min,
             temp_max: json.main.temp_max,
             description: json.weather[0].description
