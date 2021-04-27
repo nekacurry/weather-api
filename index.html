@@ -97,7 +97,7 @@
     </div>
 
     <script type='module'>
-      import { getWeather } from './src/index.js'
+      import { getWeatherByZip } from './src/index.js'
       // ------------------------------------------------------
       // Developer Code
 
@@ -116,7 +116,7 @@
         const zip = zipInput.value
         const apiKey = 'ded2931ab0bcfe4f0f974e3830fccae7'
 
-        getWeather(zip, apiKey)
+        getWeatherByZip(apiKey, zip)
           .then((data) => {
             tempEl.innerHTML = data.temp
             iconEl.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.icon}@2x.png">`

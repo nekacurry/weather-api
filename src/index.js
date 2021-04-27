@@ -1,6 +1,25 @@
 // Functions
-async function getWeather(zip, apiKey, units = 'imperial') {
+
+function getWeatherByZip(apiKey, zip, units = 'imperial') {
     const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
+    return getWeather(path)
+
+}
+
+function getWeatherByCity(apiKey, city, units = 'imperial') {
+    const path = `api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`
+    return getWeather(path)
+
+}
+
+function getWeatherByGeo(apiKey, lat, lon, units = 'imperial') {
+    const path = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`
+    return getWeather(path)
+
+}
+
+
+async function getWeather(path) {
     
     try {
         // try something
@@ -8,13 +27,10 @@ async function getWeather(zip, apiKey, units = 'imperial') {
         const json = await res.json()
         const weatherData = {
             code: json.cod,
-            coord: json.coord,
             name: json.name,
             temp: json.main.temp,
             feels_like: json.main.feels_like,
             icon: json.weather[0].icon,
-            temp_min: json.main.temp_min,
-            temp_max: json.main.temp_max,
             description: json.weather[0].description
         }
         return weatherData
@@ -26,5 +42,7 @@ async function getWeather(zip, apiKey, units = 'imperial') {
 }
 
 export {
-    getWeather
+    getWeatherByZip,
+    getWeatherByCity,
+    getWeatherByGeo
 }
